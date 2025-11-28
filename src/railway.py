@@ -36,7 +36,6 @@ class Train:
         self.on_trip = on_trip
 
 
-
 class TrainTrip:
     """Represents a scheduled train trip between two cities.
 
@@ -128,7 +127,6 @@ class TrainTrip:
         return remaining_capacity
 
 
-
 class Passenger:
     """Represents a traveler with assigned cargo weight."""
 
@@ -169,7 +167,6 @@ class Passenger:
         :return: Passenger name as string.
         """
         return f"{self.name}"
-
 
 
 # ==============================
