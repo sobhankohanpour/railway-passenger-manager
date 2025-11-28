@@ -72,11 +72,25 @@ class Passenger:
         return f"{self.name}"
 
 
+# ==============================
+# Test Cases 
+# ==============================
 if __name__ == "__main__":
+
+    # ---- TrainTrip.__call__ capacity test ----
     train = Train(last_station="Sanandaj", max_cargo_weight=34286, on_trip=False)
-    passenger1 = Passenger(name="Ali Saeedi", cargo_weight=616)
-    passenger2 = Passenger(name="Abolfazl Zandi", cargo_weight=349)
+    p1 = Passenger(name="Ali Saeedi", cargo_weight=616)
+    p2 = Passenger(name="Abolfazl Zandi", cargo_weight=349)
+
     trip = TrainTrip(origin_city="Sanandaj", destination_city="Rasht", train=train)
-    trip.passengers = [passenger1]
-    print(passenger1, passenger2)
-    print(passenger1.cargo_weight, passenger2.cargo_weight)
+
+    assert trip() == 34286, "Initial capacity should match train weight."
+    trip.passengers = [p1]
+    assert trip() == 34286 - 616, "Capacity did not decrease correctly."
+    trip.passengers = [p1, p2]
+    assert trip() == 34286 - 616 - 349, "Multiple passenger weight calc incorrect."
+
+    # ---- Passenger.__str__ test ----
+    assert str(p1) == "Ali Saeedi", "String output of passenger should return name only."
+
+    print("\n✔ All Tests Passed Successfully!")
